@@ -93,7 +93,7 @@ const EditorPage = (): JSX.Element => {
       socket.emit("send_message",{docId,content:message1});
   };
 
-  console.log({content})
+  console.log({content,membersInRoom})
   if (!editor) return <></>;
 
   return (
