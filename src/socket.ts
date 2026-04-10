@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
+import { baseURL } from "./axios";
 
-const socket=io("http://localhost:2000",{
+const socket=io(baseURL,{
     withCredentials:true
 })
 
