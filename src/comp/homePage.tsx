@@ -1,46 +1,23 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { axiosInstance } from "../axios";
-import socket from "../socket";
+import { useState, type ReactNode } from "react";
+
 import CreateDocPopUp from "./createDocPopUp";
 import { useFetchDocs } from "../api/hooks";
 import type { IDoc } from "../models";
 import { Link } from "react-router-dom";
 
 function HomePage():ReactNode{
-    const[message,setMessage]=useState<string|null>(null)
     const[isOpen,setIsOpen]=useState<boolean>(false);
-    const[docsData,setDocsData]=useState<IDoc[]>([])
 
-    const{data:docs,isPending}=useFetchDocs();
+    const{data:docsData}=useFetchDocs() as {data?: {data?: IDoc[]}}
     
-
-    useEffect(()=>{
-        setDocsData(docs?.data)
-    },[docs])
     console.log({docsData})
-    useEffect(()=>{
-        socket.on("receive_message",(data)=>{
-            console.log("Message recieved",data);
-            setMessage(data);
-        })
-
-        return () => {
-      socket.off("receive_message");
-    };
-    },[])
-
-const sendMessage = (message1:string) => {
-    socket.emit("send_message",message1);
-
-    setMessage(message1);
-  };
 
     return(
         <div>
             <button onClick={()=>setIsOpen(true)}>Create a new Document</button>
             {/* <button onClick={sendMessage}>send Message</button> */}
             <div className="flex gap-1 flex-wrap">
-                {docsData&&docsData.map(doc=>(
+                {docsData?.data&&docsData?.data.map((doc:IDoc)=>(
                 <Link to={`/editor/${doc._id}`}>
                         <div
                             key={doc._id}

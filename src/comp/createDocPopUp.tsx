@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState, type JSX } from "react";
-import type { ICreateDocPopUp, IUser } from "../models";
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import type { ICreateDocPopUp } from "../models";
 import { axiosInstance } from "../axios";
-import { useFetchUsers } from "../api/hooks";
+// import { useFetchUsers } from "../api/hooks";
 
 
 function CreateDocPopUp({
@@ -12,10 +10,10 @@ function CreateDocPopUp({
 }: ICreateDocPopUp): JSX.Element {
   
   const [name, setName] = useState<string>("");
-  const [collabs, setCollabs] = useState<string[]>([]);
-  const[userData,setUsersData]=useState<IUser[]>([]);
+  // const [collabs, setCollabs] = useState<string[]>([]);
+  // const[userData,setUsersData]=useState<IUser[]>([]);
 //   const[selectedUser,setSelectedUser]=useState<IUser|undefined>(undefined)
-  const{data:users}=useFetchUsers()
+  // const{data:users}=useFetchUsers()
   
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -47,7 +45,7 @@ function CreateDocPopUp({
         }
         axiosInstance.post("/createDoc",payload)
     }
-    console.log({collabs})
+    // console.log({collabs})
 
   return (
     <dialog ref={dialogRef} onClose={handleClose} className="overflow-visible bg-white text-black">

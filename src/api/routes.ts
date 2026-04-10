@@ -1,19 +1,19 @@
 
 import { axiosInstance } from "../axios";
-import type { IAddData, IDoc, IUser } from "../models";
+import type { IAddData, IChatBotPayload, IDoc, IQuery, IUser } from "../models";
 
 
-export async function fetchDocs():Promise<IDoc[]>{
+export async function fetchDocs():Promise<IQuery<IDoc[]>>{
         const response=await axiosInstance.get("/docs");
         return response?.data;    
 }
 
-export async function fetchDocData(docId:string):Promise<{data:IDoc}>{
+export async function fetchDocData(docId:string):Promise<IQuery<IDoc>>{
     const response=await axiosInstance.get(`/getDoc/${docId}`)
     return response?.data
 }
 
-export async function fetchUsers():Promise<IUser>{
+export async function fetchUsers():Promise<IQuery<IUser>>{
     const response=await axiosInstance.get("/getUsers")
     return response?.data;
 }
@@ -23,7 +23,7 @@ export async function addData(payload:IAddData){
     return response?.data;
 }
 
-export async function chatBot(payload){
+export async function chatBot(payload:IChatBotPayload){
     const response=await axiosInstance.post("/chatBot",payload)
     return response?.data;
 }

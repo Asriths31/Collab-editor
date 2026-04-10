@@ -1,13 +1,13 @@
-import { useMutation, useQuery, useQueryClient, type UseQueryResult } from "@tanstack/react-query";
+import { useMutation, useQuery, type UseQueryResult } from "@tanstack/react-query";
 import { addData, chatBot, fetchDocData, fetchDocs, fetchUsers } from "./routes";
-import type { IAddData, IDoc } from "../models";
+import type { IAddData, IChatBotPayload, IDoc, IQuery } from "../models";
 
 
 
 export function useFetchDocs():UseQueryResult{
-    return useQuery({
+    return useQuery<IQuery<IDoc[]>>({
         queryKey:["docs"],
-        queryFn:()=>fetchDocs(),
+        queryFn:fetchDocs,
         refetchOnWindowFocus:false,
         
     })
@@ -32,15 +32,15 @@ export function useFetchUsers(){
 }
 
 export function useAddData(){
-    const queryClient=useQueryClient();
+    // const queryClient=useQueryClient();
     return useMutation({
         mutationFn:(payload:IAddData)=>addData(payload)
     })
 }
 
 export function useChatBot(){
-    const queryClient=useQueryClient()
+    // const queryClient=useQueryClient()
     return useMutation({
-        mutationFn:(payload)=>chatBot(payload)
+        mutationFn:(payload:IChatBotPayload)=>chatBot(payload)
     })
 }

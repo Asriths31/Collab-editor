@@ -1,11 +1,11 @@
-import { useEditor, EditorContent } from "@tiptap/react";
+import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import "./Editor.css"
 import { useEffect, useRef, useState, type JSX } from "react";
 import { useParams } from "react-router-dom";
 import { useAddData, useFetchDocData } from "../api/hooks";
 import socket from "../socket";
-import type { IMember } from "../models";
+import type { EditorAction, IMember } from "../models";
 import Editor from "./Editor";
 import ChatBot from "./chatBot";
 
@@ -18,7 +18,7 @@ const EditorPage = (): JSX.Element => {
   const{mutate:addData}=useAddData();
 
   const [content, setContent] = useState("")
-  const debounceRef = useRef<NodeJS.Timeout | null>(null)
+  const debounceRef = useRef<number | null>(null)
   const isRemoteUpdate=useRef<boolean>(false)
 
   const[membersInRoom,setMembersInRoom]=useState<IMember[]>([])
@@ -112,7 +112,7 @@ const EditorPage = (): JSX.Element => {
     ].map(({ label, icon, iconClass, action }) => (
       <button
         key={label}
-        onClick={() => editor.chain().focus()[action]().run()}
+        onClick={() => editor?.chain()?.focus()[action as EditorAction]().run()}
         className="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-black hover:bg-gray-600 hover:text-white transition-colors"
       >
         <span className={`w-5 h-5 flex items-center justify-center rounded bg-[var(--color-background-secondary)] text-[12px] text-[var(--color-text-secondary)] ${iconClass}`}>
@@ -170,7 +170,7 @@ const EditorPage = (): JSX.Element => {
         </div>
 
         {/* Typing flag — show only when user is typing */}
-        {mem.isTyping && (
+        {/* {mem.isTyping && (
           <div className="flex items-center gap-1.5 pl-8">
             <div className="flex gap-0.5 items-end h-3">
               <span className="w-1 h-1 rounded-full bg-[var(--color-text-tertiary)] animate-bounce [animation-delay:0ms]" />
@@ -179,12 +179,12 @@ const EditorPage = (): JSX.Element => {
             </div>
             <span className="text-[11px] text-[var(--color-text-tertiary)]">typing…</span>
           </div>
-        )}
+        )} */}
 
       </div>
     ))}
   </aside>
-          <ChatBot docId={docId} docData={content}/>
+          <ChatBot docId={docId??""} docData={content}/>
 
 </div>
     

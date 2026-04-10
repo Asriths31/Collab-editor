@@ -1,8 +1,8 @@
 // ChatBot.tsx
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type JSX } from "react";
 import { useChatBot } from "../api/hooks";
 import type { IChatBotProps } from "../models";
-import { IoSend, IoSendSharp } from "react-icons/io5";
+import {  IoSendSharp } from "react-icons/io5";
 
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -13,12 +13,6 @@ interface Message {
   id: number;
   role: Role;
   text: string;
-}
-
-interface ChatBotProps {
-  botName?: string;
-  introMessage?: string;
-  apiEndpoint: string;
 }
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
@@ -105,7 +99,6 @@ const ChatBot = ({docId,docData}:IChatBotProps): JSX.Element => {
     { id: 0, role: "bot", text: introMessage },
   ]);
   const [input, setInput] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // useRef<HTMLDivElement> — typed to the exact DOM element we attach it to
   // so .scrollTop and .scrollHeight are available without casting

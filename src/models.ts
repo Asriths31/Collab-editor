@@ -58,3 +58,19 @@ export interface IAddData{
 export interface IEditorProps{
     editor:Editor|null
 }
+
+export type EditorAction =
+
+  | "toggleUnderline"
+  |"toggleItalic"|"toggleBold";
+
+export interface IChatBotPayload{
+    docId:string,
+    content:string,
+    userQue:string
+}
+
+export interface IQuery<T>{
+    message:string,
+    data:T
+}

@@ -1,5 +1,6 @@
 import { EditorContent } from "@tiptap/react";
-import type { JSX, ReactElement } from "react";
+import type { JSX } from "react";
+import type { IEditorProps } from "../models";
 
 
 function Editor({editor}:IEditorProps):JSX.Element{

@@ -5,11 +5,10 @@ import SignInPage from "./signIn"
 import {axiosInstance} from "../axios"
 import { toast } from "react-toastify";
 import {  useNavigate } from "react-router-dom";
-import Cookies from "js-cookie"
 
 function LoginPage():ReactNode{
 
-    const {userName,userId,emailId,password,setUserId,setUserName,setPassword,setEmailId}=useUserContext()
+    const {userName,emailId,password,setUserName,setPassword,setEmailId}=useUserContext()
 
 
     const[isSignIn,setIsSignIn]=React.useState<boolean>(true)
@@ -29,7 +28,7 @@ function LoginPage():ReactNode{
             console.log("response",res.data);
             toast.success("Login Successfull")
             navigate("home")
-            
+
             // Cookies.set("user-token",res.data.token)
             
 
