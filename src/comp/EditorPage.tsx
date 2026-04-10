@@ -53,7 +53,7 @@ const EditorPage = (): JSX.Element => {
             console.log("Message recieved",data);
             if(data!=editor.getHTML()){
               isRemoteUpdate.current=true
-              editor.commands.setContent(data);
+              editor.commands.setContent(data.content);
             }
         })
         socket.on("members_in_room",(data)=>{
