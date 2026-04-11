@@ -34,6 +34,7 @@ const EditorPage = (): JSX.Element => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
       debounceRef.current = setTimeout(() => {
         setContent(html);
+        addData({ docId: docId ?? "", value: html });
       }, 2000);
     },
   });
@@ -43,6 +44,7 @@ const EditorPage = (): JSX.Element => {
       if (data != editor.getHTML()) {
         isRemoteUpdate.current = true;
         editor.commands.setContent(data.content);
+        setContent(data.content)
       }
     });
     socket.on("members_in_room", (data) => setMembersInRoom(data));
@@ -62,9 +64,6 @@ const EditorPage = (): JSX.Element => {
     }
   }, [docData, editor]);
 
-  useEffect(() => {
-    addData({ docId: docId ?? "", value: content });
-  }, [content]);
 
   const sendMessage = (message: string) => {
     socket.emit("send_message", { docId, content: message });
@@ -85,8 +84,8 @@ const EditorPage = (): JSX.Element => {
       {/* ── Mobile top bar ── */}
       <div className="sm:hidden flex-shrink-0 flex items-center justify-between px-4 py-3 bg-[#111] border-b border-[#1e1e1e]">
         <Link to="/home">
-          <button className="text-neutral-400 text-xs font-medium hover:text-white transition-colors">
-            ← Back
+          <button className="text-xs font-medium hover:text-white transition-colors">
+             Back
           </button>
         </Link>
         <span className="text-white text-sm font-semibold tracking-tight truncate max-w-[140px]">
@@ -183,12 +182,7 @@ const EditorPage = (): JSX.Element => {
 
         {/* ── Desktop left sidebar ── */}
         <aside className="hidden sm:flex w-48 flex-shrink-0 flex-col gap-1.5 p-4 bg-[#111] border-r border-[#1e1e1e]">
-          <Link to="/home">
-            <button className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-white transition-colors mb-4 group">
-              <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
-              Back
-            </button>
-          </Link>
+          
 
           <p className="text-[10px] font-medium uppercase tracking-widest text-neutral-700 px-1 mb-1">
             Formatting

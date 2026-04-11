@@ -26,7 +26,7 @@ function LoginPage():ReactNode{
         })
         .then((res)=>{
             console.log("response",res.data);
-            toast.success("Login Successfull")
+            // toast.success("Login Successfull")
             navigate("home")
 
             // Cookies.set("user-token",res.data.token)
@@ -39,6 +39,11 @@ function LoginPage():ReactNode{
                 setIsSignIn(false)
                 console.log("userNotFound")
                 toast.error("User not found! Please Sign Up first.")
+            }
+            else{
+               setIsSignIn(false)
+                toast.error(err.response.data.message)
+        
             }
         })
 
