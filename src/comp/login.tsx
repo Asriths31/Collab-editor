@@ -68,13 +68,13 @@ function LoginPage():ReactNode{
 
     
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="h-screen w-screen flex flex-col justify-center items-center">
 
             {
                 isSignIn?<SignInPage />:<SignUpPage />
             }
             
-            <button type="submit">Login</button>
+            {/* <button type="submit">Login</button> */}
 
             
                 {
