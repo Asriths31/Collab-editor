@@ -67,7 +67,9 @@ function DocGrid({ docs }: { docs: IDoc[] }) {
             className="block"
           >
             <div
-              ref={(el) => (cardRefs.current[doc._id] = el)}
+              ref={(el) => {
+                if (el) cardRefs.current[doc._id] = el;
+              }}
               className={`
                 group relative h-40 sm:h-52 rounded-2xl overflow-hidden cursor-pointer
                 border border-[#1e1e1e] hover:border-[#333]

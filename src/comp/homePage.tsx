@@ -3,7 +3,6 @@ import { useState, type ReactNode } from "react";
 import CreateDocPopUp from "./createDocPopUp";
 import { useFetchDocs } from "../api/hooks";
 import type { IDoc } from "../models";
-import { Link } from "react-router-dom";
 import DocGrid from "./DocGrid";
 
 function HomePage():ReactNode{
@@ -12,14 +11,7 @@ function HomePage():ReactNode{
     const{data:docsData}=useFetchDocs() as {data?: {data?: IDoc[]}}
     
     console.log({docsData})
-  const cardBg = [
-  "bg-[#0f0f0f]",
-  "bg-[#0d1117]",
-  "bg-[#110f0f]",
-  "bg-[#0f110d]",
-  "bg-[#10100f]",
-  "bg-[#0d0f11]",
-];
+  
 
 
     return(
