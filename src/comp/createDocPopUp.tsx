@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type JSX } from "react";
 import type { ICreateDocPopUp } from "../models";
-import { axiosInstance } from "../axios";
+import { useCreateDoc } from "../api/hooks";
 // import { useFetchUsers } from "../api/hooks";
 
 
@@ -14,6 +14,8 @@ function CreateDocPopUp({
   // const[userData,setUsersData]=useState<IUser[]>([]);
 //   const[selectedUser,setSelectedUser]=useState<IUser|undefined>(undefined)
   // const{data:users}=useFetchUsers()
+
+  const{mutate:createDoc}=useCreateDoc()
   
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -43,7 +45,7 @@ function CreateDocPopUp({
         const payload={
             docName:name
         }
-        axiosInstance.post("/createDoc",payload)
+        createDoc(payload)
     }
     // console.log({collabs})
 

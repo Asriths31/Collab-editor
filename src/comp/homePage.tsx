@@ -8,7 +8,7 @@ import DocGrid from "./DocGrid";
 function HomePage():ReactNode{
     const[isOpen,setIsOpen]=useState<boolean>(false);
 
-    const{data:docsData}=useFetchDocs() as {data?: {data?: IDoc[]}}
+    const{data:docsData,isPending:isDocsLoading}=useFetchDocs() as {data?: {data?: IDoc[]},isPending:boolean}
     
     console.log({docsData})
   
@@ -34,27 +34,9 @@ function HomePage():ReactNode{
         </button>
       </div>
 
-      {/* Empty State */}
-      {(!docsData?.data || docsData.data.length === 0) && (
-        <div className="flex flex-col items-center justify-center mt-32 gap-3">
-          <div className="w-14 h-14 rounded-2xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#444" strokeWidth="1.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-            </svg>
-          </div>
-          <p className="text-neutral-500 text-sm">No documents yet.</p>
-          <button
-            onClick={() => setIsOpen(true)}
-            className="text-xs text-white underline underline-offset-4 hover:text-neutral-300 transition-colors cursor-pointer"
-          >
-            Create your first one
-          </button>
-        </div>
-      )}
-
+     
       {/* Document Grid */}
-      {docsData?.data&&<DocGrid docs={docsData?.data}/>}
+      {<DocGrid docs={docsData?.data} isDocsLoading={isDocsLoading}/>}
 
       <CreateDocPopUp isPopUpOpen={isOpen} setIsPopUpOpen={setIsOpen} />
     </div>

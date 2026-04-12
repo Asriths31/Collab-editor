@@ -70,7 +70,16 @@ export interface IChatBotPayload{
     userQue:string
 }
 
+export interface ICreateDocPayload{
+    docName:string
+}
+
 export interface IQuery<T>{
     message:string,
     data:T
+}
+
+export interface IDocsGridProps{ 
+    docs: IDoc[] |undefined,
+    isDocsLoading:boolean
 }

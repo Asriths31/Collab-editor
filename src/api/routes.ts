@@ -1,6 +1,6 @@
 
 import { axiosInstance } from "../axios";
-import type { IAddData, IChatBotPayload, IDoc, IQuery, IUser } from "../models";
+import type { IAddData, IChatBotPayload, ICreateDocPayload, IDoc, IQuery, IUser } from "../models";
 
 
 export async function fetchDocs():Promise<IQuery<IDoc[]>>{
@@ -20,6 +20,11 @@ export async function fetchUsers():Promise<IQuery<IUser>>{
 
 export async function addData(payload:IAddData){
     const response=await axiosInstance.post("/addData",payload)
+    return response?.data;
+}
+
+export async function createDoc(payload:ICreateDocPayload) {
+    const response=await axiosInstance.post("/createDoc",payload)
     return response?.data;
 }
 

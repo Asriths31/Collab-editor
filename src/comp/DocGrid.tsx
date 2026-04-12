@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-import type { IDoc } from "../models";
+import type { IDoc, IDocsGridProps } from "../models";
 
 const cardBg = [
   "bg-[#0f0f0f]",
@@ -11,7 +11,7 @@ const cardBg = [
   "bg-[#0d0f11]",
 ];
 
-function DocGrid({ docs }: { docs: IDoc[] }) {
+function DocGrid({ docs,isDocsLoading }: IDocsGridProps) {
   const navigate = useNavigate();
   const [clickedId, setClickedId] = useState<string | null>(null);
   const [transitioning, setTransitioning] = useState(false);
@@ -57,8 +57,31 @@ function DocGrid({ docs }: { docs: IDoc[] }) {
             : "inset 0 0 0 1px #1a1a1a",
         }}
       />
+       {/* Empty State */}
+            {isDocsLoading?
+                <div className="h-full w-full flex justify-center items-center">
+                    Fetching Documents Please Wait...
+                </div>
+            :(!docs || docs.length === 0) ? (
+              <div className="flex flex-col items-center justify-center mt-32 gap-3">
+                <div className="w-14 h-14 rounded-2xl bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#444" strokeWidth="1.5">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                </div>
+                <p className="text-neutral-500 text-sm">No documents yet.</p>
+                {/* <button
+                  onClick={() => setIsOpen(true)}
+                  className="text-xs text-white underline underline-offset-4 hover:text-neutral-300 transition-colors cursor-pointer"
+                >
+                  Create your first one
+                </button> */}
+              </div>
+            )
+      
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+      :(<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {docs.map((doc: IDoc, index: number) => (
           <Link
             to={`/editor/${doc._id}`}
@@ -112,7 +135,7 @@ function DocGrid({ docs }: { docs: IDoc[] }) {
             </div>
           </Link>
         ))}
-      </div>
+      </div>)}
     </>
   );
 }
