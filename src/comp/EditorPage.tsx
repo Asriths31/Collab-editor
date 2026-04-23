@@ -84,7 +84,7 @@ const EditorPage = (): JSX.Element => {
       {/* ── Mobile top bar ── */}
       <div className="sm:hidden flex-shrink-0 flex items-center justify-between px-4 py-3 bg-[#111] border-b border-[#1e1e1e]">
         <Link to="/home">
-          <button className="text-xs font-medium hover:text-white transition-colors">
+          <button className="text-xs font-medium hover:text-black transition-colors">
              Back
           </button>
         </Link>
