@@ -90,7 +90,7 @@ function LoginPage():ReactNode{
                         onClick={()=>setIsSignIn(false)}
                         className="ml-1.5 text-black font-medium relative cursor-pointer
                           transition-all duration-300 ease-out
-                          hover:text-neutral-200 hover:scale-105
+                           hover:scale-105
                           active:scale-95
                           after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:h-[1.5px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
                         >Sign Up</button>
@@ -102,7 +102,7 @@ function LoginPage():ReactNode{
                         onClick={()=>setIsSignIn(true)}
                         className="ml-1.5 text-black font-medium relative cursor-pointer
                           transition-all duration-300 ease-out
-                          hover:text-neutral-200 hover:scale-105
+                           hover:scale-105
                           active:scale-95
                           after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:h-[1.5px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
                         >Sign In</button>
