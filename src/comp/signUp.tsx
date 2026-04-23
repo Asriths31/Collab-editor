@@ -54,7 +54,14 @@ function SignUpPage(): ReactNode {
         />
       </div>
 
-      <button type="submit" className="w-full bg-white text-black text-sm font-medium rounded-lg py-2.5 mt-2 hover:bg-neutral-200 transition-colors cursor-pointer">
+      <button
+        type="submit"
+        className="w-full bg-white text-black text-sm font-medium rounded-lg py-2.5 mt-2 cursor-pointer
+          transition-all duration-300 ease-out
+          hover:bg-neutral-100 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]
+          active:scale-[0.97] active:bg-neutral-300
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111]"
+      >
         Create account
       </button>
     </div>

@@ -84,20 +84,27 @@ function LoginPage():ReactNode{
             
                 {
                     isSignIn?
-                    <p>Don't have an account?
+                    <p className="text-sm text-neutral-400 mt-5">Don't have an account?
                         <button 
                         type="button" 
-                        
                         onClick={()=>setIsSignIn(false)}
-                        className="login-button"
+                        className="ml-1.5 text-black font-medium relative cursor-pointer
+                          transition-all duration-300 ease-out
+                          hover:text-neutral-200 hover:scale-105
+                          active:scale-95
+                          after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:h-[1.5px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
                         >Sign Up</button>
                     </p>
                     :
-                    <p>Already have an account?
+                    <p className="text-sm text-neutral-400 mt-5">Already have an account?
                         <button 
                         type="button" 
                         onClick={()=>setIsSignIn(true)}
-                        className="login-button"
+                        className="ml-1.5 text-black font-medium relative cursor-pointer
+                          transition-all duration-300 ease-out
+                          hover:text-neutral-200 hover:scale-105
+                          active:scale-95
+                          after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:h-[1.5px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
                         >Sign In</button>
                     </p>
                 }
