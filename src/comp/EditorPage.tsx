@@ -37,7 +37,7 @@ const EditorPage = (): JSX.Element => {
         addData({ docId: docId ?? "", value: html });
       }, 2000);
     },
-  });
+  },[]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {

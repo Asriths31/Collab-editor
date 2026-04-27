@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, type JSX } from "react";
 import { useChatBot } from "../api/hooks";
 import type { IChatBotProps } from "../models";
-import {  IoSendSharp } from "react-icons/io5";
+import {  IoClose, IoSendSharp } from "react-icons/io5";
 
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -192,7 +192,7 @@ const ChatBot = ({docId,docData}:IChatBotProps): JSX.Element => {
       {/* Chat box */}
       <div
         className={`
-          flex flex-col w-[340px] h-[480px]
+          flex flex-col w-[340px] ${isOpen?"h-[480px]":"h-0! w-0!"}
           bg-black
           border border-[var(--color-border-tertiary)]
           rounded-2xl overflow-hidden
@@ -213,9 +213,9 @@ const ChatBot = ({docId,docData}:IChatBotProps): JSX.Element => {
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="w-7 h-7 flex items-center justify-center rounded-lg text-[var(--color-text-tertiary)] hover:bg-[var(--color-background-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
+            className="w-7 h-7 flex items-center justify-center rounded-lg text-black hover:bg-[var(--color-background-secondary)] hover:text-[var(--color-text-primary)] transition-colors"
           >
-            <CloseIcon />
+            <IoClose className="text-black h-4 w-4"/>
           </button>
         </div>
 
